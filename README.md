@@ -18,7 +18,7 @@ Making an iOS App for the Hangman Game
 *    New Game button
 
 *   Give Up button
-*   
+
 *    If the user guesses every letter in some word before running out of chances, he or she is congratulated, and gameplay ends (i.e., the game should ignore any subsequent keyboard input). If the user fails to guess every letter in some word before running out of chances, he or she is consoled, and gameplay ends. 
 
 *    Two settings: the length of the word to be guessed and the maximum number of incorrect guesses allowed (1 to 26). These settings are controlled by sliders.
