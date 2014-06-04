@@ -27,9 +27,12 @@ Making an iOS App for the Hangman Game
 
 
 ###Implementation
+
 *   The given file words.plist is used for the universe of possible words
 
-###Mockup
+*   Objective C
+
+###Mockups
 For mockups, see the doc directory in this repo
 
 
