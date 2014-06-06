@@ -4,7 +4,7 @@ Words array read in from words.plist, sorted on the length of the words
 
 ####Classes and their Methods:
 
-* Gameplay
+*	Gameplay
 	- newGame:
 	 		Starts a new game
 	- getNewWord:
@@ -31,12 +31,16 @@ Words array read in from words.plist, sorted on the length of the words
 	- endGame:
 			Ends the game and goes to the Highscores view
 					
-* Settings
+*	Settings
 	- setLengthOfWord:
 		sets the length of the word to be guessed
 	- setNumberOfLives:
 		sets the amount of lives
 
-* High scores
+*	High scores
 	- updateHighscores:
 		updates the highscores with current game result
+
+####Mockups:
+
+For mockups, see the doc directory in this repo
