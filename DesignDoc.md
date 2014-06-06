@@ -26,6 +26,8 @@ Words array read in from words.plist, sorted on the length of the words
 			Checks if the game is won, when all letters are guessed
 	- gameLost:
 			Checks if the game is lost, when no more lives remain
+	- giveUp:
+			Displays hangman word, after which it ends the game
 	- endGame:
 			Ends the game and goes to the Highscores view
 					
