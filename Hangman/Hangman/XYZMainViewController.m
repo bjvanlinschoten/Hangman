@@ -18,16 +18,16 @@
 @synthesize letterInput;
 @synthesize livesLabel;
 
-Gameplay *gp = NULL;
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    gp = Gameplay.alloc;
-    [gp setUpWord:@"hangman"];
-    hangmanWordLabel.text = gp.hangmanWord;
-    self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", gp.lives];
+    self.gp = [Gameplay alloc];
+    self.hs = [XYZHighscores alloc];
+    self.playing = true;
+    [self.gp setUpWord:@"hangman"];
+    hangmanWordLabel.text = self.gp.hangmanWord;
+    self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", self.gp.lives];
     [self.letterInput becomeFirstResponder];
 };
 
@@ -42,7 +42,10 @@ Gameplay *gp = NULL;
 - (void)flipsideViewControllerDidFinish:(XYZFlipsideViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
-};
+    if (self.playing) {
+        [self.letterInput becomeFirstResponder];
+    }
+}
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
@@ -53,27 +56,50 @@ Gameplay *gp = NULL;
 
 - (BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string {
     
-    char c = [string characterAtIndex:0];
-    
-    if (c>='A' && c<='Z') {
-        c = c + 32;
-    }
+    char c = [[string lowercaseString] characterAtIndex:0];
     
     if (c>='a' && c<='z') {
-        BOOL b = [gp checkLetter:string];
+        BOOL letterChecked = [self.gp checkLetter:[string lowercaseString]];
         NSString *tempString = [NSString stringWithFormat:@"%cLabel", c];
         UILabel *tempLabel = [self valueForKey:tempString];
-        if (b) {
-            tempLabel.textColor = [UIColor colorWithRed:27/255.0f green:142/255.0f blue:24/255.0f alpha:0.5f];
+        if (letterChecked) {
+            tempLabel.textColor = [UIColor colorWithRed:27/255.0f green:142/255.0f blue:24/255.0f alpha:0.6f];
         }
         else {
-            tempLabel.textColor = [UIColor colorWithRed:206/255.0f green:2/255.0f blue:1/255.0f alpha:0.5f];
+            tempLabel.textColor = [UIColor colorWithRed:206/255.0f green:2/255.0f blue:1/255.0f alpha:0.6f];
         }
-        hangmanWordLabel.text = gp.hangmanWord;
-        self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", gp.lives];
+        hangmanWordLabel.text = self.gp.hangmanWord;
+        self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", self.gp.lives];
+        
+        BOOL won = [self.gp isGameWon:self.gp.hangmanWord];
+        
+        if (won || self.gp.lives == 0) {
+            self.hangmanWordLabel.text = self.gp.correctWord;
+            [self.letterInput resignFirstResponder];
+            self.playing = false;
+            NSString *result;
+            if (won) {
+                [self.hs updateHighscoresWithWord:self.gp.correctWord score:self.gp.mistakes];
+                result = @"won";
+            }
+            else {
+                result = @"lost";
+            }
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:result forKey:@"result"];
+            [defaults synchronize];
+            [self changeView:@"XYZEndViewController"];
+        }
     }
     
     return NO;
 };
+
+-(void)changeView:(NSString *)viewController {
+    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
+    UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:viewController];
+    [vc setModalPresentationStyle:UIModalPresentationFullScreen];
+    [self presentViewController:vc animated:YES completion:nil];
+}
 
 @end

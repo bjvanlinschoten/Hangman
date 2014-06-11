@@ -8,10 +8,15 @@
 
 #import "XYZFlipsideViewController.h"
 #import "Gameplay.h"
+#import "XYZEndViewController.h"
+#import "XYZHighscores.h"
 
 
 @interface XYZMainViewController : UIViewController <XYZFlipsideViewControllerDelegate, UITextFieldDelegate>
 
+@property (strong, nonatomic) Gameplay *gp;
+@property (strong, nonatomic) XYZHighscores *hs;
+@property (assign, nonatomic, readwrite) BOOL playing;
 @property (strong, nonatomic) IBOutlet UILabel *hangmanWordLabel;
 @property (strong, nonatomic) IBOutlet UILabel *livesLabel;
 @property (strong, nonatomic) IBOutlet UITextField *letterInput;
@@ -42,5 +47,6 @@
 @property (strong, nonatomic) IBOutlet UILabel *yLabel;
 @property (strong, nonatomic) IBOutlet UILabel *zLabel;
 
+-(void)changeView:(NSString *)viewController;
 
 @end
