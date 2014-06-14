@@ -13,6 +13,8 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
+    
+    // initialize userdefaults with default lives and length of word
     NSDictionary *defaultsdict = [[NSDictionary alloc] initWithObjectsAndKeys:[NSNumber numberWithInt:10], @"lives", [NSNumber numberWithInt:7],@"lengthOfWord", nil];
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     [defaults registerDefaults:defaultsdict];

@@ -7,12 +7,8 @@
 //
 
 #import <Foundation/Foundation.h>
-#import <sqlite3.h>
 
-@interface Gameplay : NSObject {
-    sqlite3 *word_db;
-}
-
+@interface Gameplay : NSObject
 
 @property (copy, nonatomic, readwrite) NSString *hangmanWord;
 @property (copy, nonatomic, readwrite) NSString *correctWord;
@@ -22,8 +18,9 @@
 @property (assign, nonatomic, readwrite) int mistakes;
 
 -(BOOL)checkLetter:(NSString *) letter;
--(BOOL)isGameWon:(NSString *) currentWord;
--(void)setUpWord:(NSString *) correctWord;
+-(BOOL)isGameWon;
+-(void)setUpGame:(NSString *) correctWord;
+-(BOOL)isGameEnd;
 
 
 @end

@@ -10,34 +10,20 @@
 #import "XYZMainViewController.h"
 #import "XYZHighscores.h"
 
-@interface XYZEndViewController : UIViewController
+@interface XYZEndViewController : UIViewController <XYZFlipsideViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIView *colorBlock;
 @property (strong, nonatomic) IBOutlet UILabel *resultLabel;
-@property (strong, nonatomic) IBOutlet UILabel *hangmanLabel;
+@property (strong, nonatomic) IBOutlet UILabel *correctWordLabel;
 @property (strong, nonatomic) NSMutableArray *highscores;
 @property (strong, nonatomic) XYZHighscores *hs;
-@property (strong, nonatomic) IBOutlet UILabel *highscore1Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore2Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore3Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore4Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore5Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore6Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore7Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore8Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore9Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore10Label;
-@property (strong, nonatomic) IBOutlet UILabel *highscore1ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore2ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore3ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore4ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore5ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore6ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore7ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore8ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore9ScoreLabel;
-@property (strong, nonatomic) IBOutlet UILabel *highscore10ScoreLabel;
+
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *highscoreWordLabels;
+
+@property (strong, nonatomic) IBOutletCollection(UILabel) NSArray *highscoreScoreLabels;
 
 - (IBAction)newGame:(id)sender;
+- (void) updateHighscoreLabels;
+- (IBAction)resetHighscores:(id)sender;
 
 @end

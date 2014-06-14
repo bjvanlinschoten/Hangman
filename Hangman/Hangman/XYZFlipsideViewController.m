@@ -35,12 +35,15 @@
     // Dispose of any resources that can be recreated.
 }
 
+
 #pragma mark - Actions
 
 - (IBAction)done:(id)sender {
+    /*[self dismissViewControllerAnimated:YES completion:nil];*/
     [self.delegate flipsideViewControllerDidFinish:self];
 }
 
+// update lives with slider
 - (IBAction)setLives:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger lives = (int)livesSlider.value;
@@ -48,6 +51,7 @@
     livesLabel.text = [NSString stringWithFormat:@"Number of Lives: %d", lives];
 }
 
+// update length of word with slidder
 - (IBAction)setLengthOfWord:(id)sender {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSInteger lengthOfWord = (int)lengthOfWordSlider.value;

@@ -10,29 +10,30 @@
 
 @implementation XYZHighscores
 
-
+// updates the list of highscores with new score
 -(void)updateHighscoresWithWord:(NSString *)word score:(int)mistakes {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSNumber *score = [NSNumber numberWithInt:mistakes];
+    
+    // make array for new score
     NSArray *newscore = [NSArray arrayWithObjects:score, word, nil];
     NSMutableArray *highscores = [NSMutableArray alloc];
     highscores = [highscores initWithArray:[defaults objectForKey:@"highscores"]];
+    
     int index = -1;
     
+    // check if and where the new score must come in highscores
     if (highscores == NULL) {
         index = 0;
         highscores = [NSMutableArray arrayWithObject:newscore];
     }
     else {
-        for (int i = 0; i < [highscores count]; i++) {
+        for (int i = 0; i < (int)[highscores count]; i++) {
             NSNumber *score_i = highscores[i][0];
-            NSLog(@"nieuw: %@, score-i: %@", score, score_i);
             if ([score intValue] < [score_i intValue]) {
                 index = i;
-                NSLog(@"index: %d", index);
                 break;
             }
-            NSLog(@"loop");
         }
         if (index == -1 && [highscores count] < 10) {
             index = [highscores count];
@@ -48,6 +49,7 @@
     
 }
 
+// get the highscores from userdefaults
 -(NSMutableArray *)getHighscores {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSMutableArray *highscores = [[NSMutableArray alloc] init];
@@ -55,9 +57,16 @@
     return highscores;
 }
 
+// get the correctword from userdefaults
 -(NSString *) getCorrectWord {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     return [defaults objectForKey:@"correctWord"];
+}
+
+// reset highscores
+-(void) resetHighscores {
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:NULL forKey:@"highscores"];
 }
 
 

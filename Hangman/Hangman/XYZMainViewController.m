@@ -17,19 +17,27 @@
 @synthesize hangmanWordLabel;
 @synthesize letterInput;
 @synthesize livesLabel;
+@synthesize alphabet2;
+
+XYZWords *words = NULL;
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.gp = [Gameplay alloc];
     self.hs = [XYZHighscores alloc];
-    self.playing = true;
-    [self.gp setUpWord:@"hangman"];
-    hangmanWordLabel.text = self.gp.hangmanWord;
-    self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", self.gp.lives];
-    [self.letterInput becomeFirstResponder];
+    words = [XYZWords alloc];
+    
+    // start new game
+    [self newGame];
 };
+
+- (void)viewDidAppear:(BOOL)animated {
+    // make sure keyboard is active
+    if (self.playing) {
+        [self.letterInput becomeFirstResponder];
+    }
+}
 
 - (void)didReceiveMemoryWarning
 {
@@ -42,6 +50,7 @@
 - (void)flipsideViewControllerDidFinish:(XYZFlipsideViewController *)controller
 {
     [self dismissViewControllerAnimated:YES completion:nil];
+    // make sure keyboard is active
     if (self.playing) {
         [self.letterInput becomeFirstResponder];
     }
@@ -58,27 +67,39 @@
     
     char c = [[string lowercaseString] characterAtIndex:0];
     
+    // if input is a valid lowercase letter
     if (c>='a' && c<='z') {
+        
+        // check later
         BOOL letterChecked = [self.gp checkLetter:[string lowercaseString]];
-        NSString *tempString = [NSString stringWithFormat:@"%cLabel", c];
-        UILabel *tempLabel = [self valueForKey:tempString];
+        
+        // update the alphabet labels
+        UILabel *tempLabel;
+        for (UILabel *label in self.alphabet2) {
+            if ([[label.text lowercaseString] isEqualToString:string]) {
+                tempLabel = label;
+            }
+        }
         if (letterChecked) {
             tempLabel.textColor = [UIColor colorWithRed:27/255.0f green:142/255.0f blue:24/255.0f alpha:0.6f];
         }
         else {
             tempLabel.textColor = [UIColor colorWithRed:206/255.0f green:2/255.0f blue:1/255.0f alpha:0.6f];
         }
+        
+        // update hangman word and lives label
         hangmanWordLabel.text = self.gp.hangmanWord;
         self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", self.gp.lives];
         
-        BOOL won = [self.gp isGameWon:self.gp.hangmanWord];
-        
-        if (won || self.gp.lives == 0) {
+        // if game end
+        if ([self.gp isGameEnd]) {
             self.hangmanWordLabel.text = self.gp.correctWord;
             [self.letterInput resignFirstResponder];
             self.playing = false;
             NSString *result;
-            if (won) {
+            
+            // if game is won, update highscores
+            if ([self.gp isGameWon]) {
                 [self.hs updateHighscoresWithWord:self.gp.correctWord score:self.gp.mistakes];
                 result = @"won";
             }
@@ -88,6 +109,8 @@
             NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
             [defaults setObject:result forKey:@"result"];
             [defaults synchronize];
+            
+            // go to highscores view controller
             [self changeView:@"XYZEndViewController"];
         }
     }
@@ -95,11 +118,31 @@
     return NO;
 };
 
+// changes view controller
 -(void)changeView:(NSString *)viewController {
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
     UIViewController *vc = [storyboard instantiateViewControllerWithIdentifier:viewController];
     [vc setModalPresentationStyle:UIModalPresentationFullScreen];
     [self presentViewController:vc animated:YES completion:nil];
+}
+
+// starts new game, with new word
+-(void)newGame {
+    self.gp = [Gameplay alloc];
+    NSString *correctWord = [words getWord];
+    self.playing = true;
+    [self.gp setUpGame:correctWord];
+    hangmanWordLabel.text = self.gp.hangmanWord;
+    self.livesLabel.text = [NSString stringWithFormat:@"Lives: %d", self.gp.lives];
+    for (UILabel *label in alphabet2) {
+        label.textColor = [UIColor blackColor];
+    }
+}
+
+// when user gives up by pressing this button, start new game after showing correct word for 1 second
+- (IBAction)newGameButton:(id)sender {
+    self.hangmanWordLabel.text = self.gp.correctWord;
+    [self performSelector:@selector(newGame) withObject:nil afterDelay:1.0];
 }
 
 @end

@@ -8,10 +8,12 @@
 
 /* Begin PBXBuildFile section */
 		EB4BA12619485C1900AE4D66 /* libsqlite3.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = EB4BA12519485C1900AE4D66 /* libsqlite3.dylib */; };
-		EB4BA1281948699300AE4D66 /* words_db.sqlite in Resources */ = {isa = PBXBuildFile; fileRef = EB4BA1271948699300AE4D66 /* words_db.sqlite */; };
 		EB4BA12E19486C4100AE4D66 /* StartingScreenViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4BA12D19486C4100AE4D66 /* StartingScreenViewController.m */; };
 		EB4BA13719487E3E00AE4D66 /* XYZEndViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4BA13619487E3E00AE4D66 /* XYZEndViewController.m */; };
 		EB4BA13D1948A12800AE4D66 /* XYZHighscores.m in Sources */ = {isa = PBXBuildFile; fileRef = EB4BA13C1948A12800AE4D66 /* XYZHighscores.m */; };
+		EBA28DDB1949AEF000CC1B32 /* wordsSortedOnLength.plist in Resources */ = {isa = PBXBuildFile; fileRef = EBA28DDA1949AEF000CC1B32 /* wordsSortedOnLength.plist */; };
+		EBBC87AA1949B250004DC3ED /* XYZWords.m in Sources */ = {isa = PBXBuildFile; fileRef = EBBC87A91949B250004DC3ED /* XYZWords.m */; };
+		EBBC87AC194BB5D6004DC3ED /* hangman.jpg in Resources */ = {isa = PBXBuildFile; fileRef = EBBC87AB194BB5D6004DC3ED /* hangman.jpg */; };
 		EBCB7D761947008400EDC220 /* Gameplay.m in Sources */ = {isa = PBXBuildFile; fileRef = EBCB7D751947008400EDC220 /* Gameplay.m */; };
 		EBFFC78B1945CE9600EB7882 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFFC78A1945CE9600EB7882 /* Foundation.framework */; };
 		EBFFC78D1945CE9600EB7882 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EBFFC78C1945CE9600EB7882 /* CoreGraphics.framework */; };
@@ -42,13 +44,16 @@
 
 /* Begin PBXFileReference section */
 		EB4BA12519485C1900AE4D66 /* libsqlite3.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libsqlite3.dylib; path = usr/lib/libsqlite3.dylib; sourceTree = SDKROOT; };
-		EB4BA1271948699300AE4D66 /* words_db.sqlite */ = {isa = PBXFileReference; lastKnownFileType = file; name = words_db.sqlite; path = ../../words_db.sqlite; sourceTree = "<group>"; };
 		EB4BA12C19486C4100AE4D66 /* StartingScreenViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = StartingScreenViewController.h; path = ../StartingScreenViewController.h; sourceTree = "<group>"; };
 		EB4BA12D19486C4100AE4D66 /* StartingScreenViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = StartingScreenViewController.m; path = ../StartingScreenViewController.m; sourceTree = "<group>"; };
 		EB4BA13519487E3E00AE4D66 /* XYZEndViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZEndViewController.h; sourceTree = "<group>"; };
 		EB4BA13619487E3E00AE4D66 /* XYZEndViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZEndViewController.m; sourceTree = "<group>"; };
 		EB4BA13B1948A12800AE4D66 /* XYZHighscores.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZHighscores.h; sourceTree = "<group>"; };
 		EB4BA13C1948A12800AE4D66 /* XYZHighscores.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZHighscores.m; sourceTree = "<group>"; };
+		EBA28DDA1949AEF000CC1B32 /* wordsSortedOnLength.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = wordsSortedOnLength.plist; path = ../../wordsSortedOnLength.plist; sourceTree = "<group>"; };
+		EBBC87A81949B250004DC3ED /* XYZWords.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XYZWords.h; sourceTree = "<group>"; };
+		EBBC87A91949B250004DC3ED /* XYZWords.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XYZWords.m; sourceTree = "<group>"; };
+		EBBC87AB194BB5D6004DC3ED /* hangman.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; name = hangman.jpg; path = ../../hangman.jpg; sourceTree = "<group>"; };
 		EBCB7D741947008400EDC220 /* Gameplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Gameplay.h; sourceTree = "<group>"; };
 		EBCB7D751947008400EDC220 /* Gameplay.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Gameplay.m; sourceTree = "<group>"; };
 		EBFFC7871945CE9600EB7882 /* Hangman.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Hangman.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -141,6 +146,8 @@
 				EB4BA12D19486C4100AE4D66 /* StartingScreenViewController.m */,
 				EBFFC7991945CE9600EB7882 /* XYZAppDelegate.h */,
 				EBFFC79A1945CE9600EB7882 /* XYZAppDelegate.m */,
+				EBBC87A81949B250004DC3ED /* XYZWords.h */,
+				EBBC87A91949B250004DC3ED /* XYZWords.m */,
 				EBFFC79C1945CE9600EB7882 /* Main.storyboard */,
 				EB4BA13519487E3E00AE4D66 /* XYZEndViewController.h */,
 				EB4BA13619487E3E00AE4D66 /* XYZEndViewController.m */,
@@ -157,7 +164,8 @@
 		EBFFC7911945CE9600EB7882 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				EB4BA1271948699300AE4D66 /* words_db.sqlite */,
+				EBA28DDA1949AEF000CC1B32 /* wordsSortedOnLength.plist */,
+				EBBC87AB194BB5D6004DC3ED /* hangman.jpg */,
 				EBFFC7921945CE9600EB7882 /* Hangman-Info.plist */,
 				EBFFC7931945CE9600EB7882 /* InfoPlist.strings */,
 				EBFFC7961945CE9600EB7882 /* main.m */,
@@ -263,8 +271,9 @@
 			files = (
 				EBFFC7A61945CE9700EB7882 /* Images.xcassets in Resources */,
 				EBFFC7951945CE9600EB7882 /* InfoPlist.strings in Resources */,
+				EBBC87AC194BB5D6004DC3ED /* hangman.jpg in Resources */,
+				EBA28DDB1949AEF000CC1B32 /* wordsSortedOnLength.plist in Resources */,
 				EBFFC79E1945CE9600EB7882 /* Main.storyboard in Resources */,
-				EB4BA1281948699300AE4D66 /* words_db.sqlite in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -285,6 +294,7 @@
 			files = (
 				EB4BA13719487E3E00AE4D66 /* XYZEndViewController.m in Sources */,
 				EBFFC7A41945CE9700EB7882 /* XYZFlipsideViewController.m in Sources */,
+				EBBC87AA1949B250004DC3ED /* XYZWords.m in Sources */,
 				EB4BA13D1948A12800AE4D66 /* XYZHighscores.m in Sources */,
 				EBCB7D761947008400EDC220 /* Gameplay.m in Sources */,
 				EB4BA12E19486C4100AE4D66 /* StartingScreenViewController.m in Sources */,

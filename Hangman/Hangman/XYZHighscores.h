@@ -13,5 +13,6 @@
 -(void)updateHighscoresWithWord:(NSString *)word score:(int)score;
 -(NSMutableArray *)getHighscores;
 -(NSString *) getCorrectWord;
+-(void)resetHighscores;
 
 @end
